@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="icon" type="image/gif/png/svg" href="img/logo.svg" />
+  <title>Mega Holz | 3D Planer | HOCHWALD</title>
+
+  <!-- fa fa fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- main style -->
+  <link rel="stylesheet" type="text/css" href="styles/style.css" />
+
+  <!-- nouislider cdn -->
+  <script src="scripts/dependencies/nouislider.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/nouislider.min.css" />
+  <!-- wNumb.js -->
+  <script src="scripts/dependencies/wNumb.min.js"></script>
+
+  <!-- lootie -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.6.4/lottie_svg.min.js"></script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+  <!-- Babylon.js -->
+  <script src="https://preview.babylonjs.com/babylon.js"></script>
+  <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+  <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+
+  <!--  for cart -->
+  <link rel="stylesheet" type="text/css" href="styles/foundation.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300&amp;subset=latin-ext" rel="stylesheet"
+    type="text/css">
+  <link rel="stylesheet" type="text/css" href="styles/cartStyle.css">
+  <script type="text/javascript" src="scripts/dependencies/jquery-2.1.0.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- HTML -->
+  <div class="configuratorContainer">
+
+    <!-- HEADING -->
+
+    <div class="heading">
+      <div class="new-start">
+        <div class="get-back">
+          <div id="get-back-arrow">&#8678;</div>
+          <div class="get-back-fence-name">HOCHWALD</div>
+        </div>
+        <div class="heading-logo-container"></div>
+        <div class="new-fence">
+          <a href="index.html">
+            <div id="new-fence-but">
+              NEUSTART
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="heading-menu">
+        <!-- <div id="settings-but" class="heading-menu-buttons active-menu-buttons">
+          <i class="fa fa-gear" id="fa-gear"></i>
+          <div class="heading-menu-title">Anpassen</div>
+        </div> -->
+        <div id="price-but" class="heading-menu-buttons">
+          <i class="fa fa-calculator"></i>
+          <div class="heading-menu-title">Preis/Warenkorb</div>
+        </div>
+
+        <div id="videos-but" class="heading-menu-buttons">
+          <i class="fa fa-play-circle-o"></i>
+          <div class="heading-menu-title">Anleitung</div>
+        </div>
+        <div id="screenshot-but" class="heading-menu-buttons">
+          <i class="fa fa-camera"></i>
+          <div class="heading-menu-title">Screenshot</div>
+        </div>
+        <div id="2dplan-but" class="heading-menu-buttons">
+          <i class="fa fa-map"></i>
+          <div class="heading-menu-title">2D Foundation Plan</div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- MODAL FADE CONTAINER ZA OBAVESTENJA -->
+    <div class="modal-fade" id="modal-fade" style="display: none">
+      <!-- MODAL ON STURMANKER -->
+      <div class="modal-content" id="on-sturmanker" style="display: none;">
+        <div class="modal-header">
+          <h4 style="flex: 90%; margin-left: 30px;">Sturamnker</h4>
+          <div class="modal-close-btn-container">
+            <div class="modal-close-btn">&#10005</div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body-img" style="background-image: url('img/sturmanker.webp');"></div>
+          <div class="modal-body-text">zum Löschen anklicken
+          </div>
+        </div>
+        <div class="modal-footer"><button class="modal-ver-sch-btn"
+            style="margin: 0 auto; cursor: pointer;">Verstaden</button></div>
+      </div>
+      <!-- MODAL INLAY INFO -->
+      <div class="modal-content" id="on-inlay-info" style="display: none;">
+        <div class="modal-header">
+          <h4 style="flex: 90%; margin-left: 30px;">VIERO<br>
+            Alu-Gitter 10 x 10 mm
+          </h4>
+          <div class="modal-close-btn-container">
+            <div class="modal-close-btn">&#10005</div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body-info-img" style="background-image: url('img/preview-viero.jpg');"></div>
+        </div>
+        <div class="modal-footer"><button class="modal-ver-sch-btn"
+            style="margin: 0 auto; cursor: pointer;">Schließen</button></div>
+      </div>
+      <!-- MODAL LED STURMANKER -->
+      <div class="modal-content" id="on-led-sturmanker" style="display: none;">
+        <div class="modal-header">
+          <h4 style="flex: 90%; margin-left: 30px;">LED oder Sturmanker
+          </h4>
+          <div class="modal-close-btn-container">
+            <div class="modal-close-btn">&#10005</div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body-img" style="background-image: url('img/sturmankerLed.webp');"></div>
+          <div class="modal-body-text">LED und Sturmanker können nicht zusammen<br>montiert werden!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-ver-sch-btn" id="ledStur-btn" style="margin: 0 auto; cursor: pointer; display: none;">LED
+            durch Sturmanker
+            ersetzen
+          </button>
+          <button class="modal-ver-sch-btn" id="sturLed-btn" style="margin: 0 auto; cursor: pointer; display: none;">
+            Sturmanker durch LED
+            ersetzen
+          </button>
+          <button class="modal-ver-sch-btn" style="margin: 0 auto; cursor: pointer;">Schließen</button>
+        </div>
+      </div>
+      <!-- MODAL VIDEOS -->
+      <div class="modal-content" id="modal-videos" style="display: none;">
+        <div class="modal-header">
+          <h4 style="flex: 90%; margin-left: 30px;">Anleitung</h4>
+          <div class="modal-close-btn-container">
+            <div class="modal-close-btn">&#10005</div>
+          </div>
+        </div>
+        <div class="modal-body" style="display: block;">
+          <div class="modal-videos-part">Navigieren mit Schaltflächen</div>
+          <div class="modal-videos-part">Navigieren mit einer Maus / Smartphone / Tablet</div>
+          <div class="modal-videos-part">Navigieren mit der Tastatur</div>
+          <div class="modal-videos-part">Produkte hinzufügen</div>
+          <div class="modal-videos-part">Produkte austauschen</div>
+          <div class="modal-videos-part" style="border: none;">Konfiguration neu starten</div>
+        </div>
+        <div class="modal-footer"><button class="modal-ver-sch-btn"
+            style="margin: 0 auto; cursor: pointer;">Schließen</button>
+        </div>
+      </div>
+
+      <div class="modal-content" id="modal-video">
+        <div class="modal-close-btn-container-video">
+          <div class="modal-close-btn">&#10005</div>
+        </div>
+        <video id='modal-video-video' controls loop="true" src="videos/5.webm" type="video/webm">
+          Your browser does not support the video tag.
+        </video>
+
+      </div>
+
+      <!-- END OF MODAL -->
+    </div>
+
+    <!-- CONFIGURATOR -->
+    <div class="configurator-section">
+
+      <!-- SIDE ACCESORIES -->
+      <div class="side-accesories" id="side-accesories" style="display: none;">
+        <div class="side-accesories-title">
+          <div class="accTitle" style="margin-left: 5%;">ausgewählter Zaun</div>
+          <div class="settings-close-btn-container">
+            <div class="side-accesories-close-btn">&#10005</div>
+          </div>
+        </div>
+        <!-- DELETE HOUSWAND ACCESORIE -->
+        <div class="set-part-container del-acc"
+          style="height: 50px; cursor: default; display: none; border-style: none;">
+          <!-- first part -->
+          <div class="set-part-direkte-hauswand-acc">
+            <div class="side-img-direkte-hauswand-container-acc">
+              <div class="side-img-direkte-hauswand-acc" style="background-image:
+                  url('img/wall-bar.svg');"></div>
+            </div>
+            <div class="part-set-part-title">Montageprofil</div>
+            <div class="delete-img-accesories-container" style="flex: 10%">
+              <div class="delete-img-accesories"></div>
+            </div>
+          </div>
+        </div>
+        <!-- DELETE STURMANKER -->
+        <div class="set-part-container del-acc"
+          style="height: 50px; cursor: default; display: none; border-style: none;">
+          <!-- first part -->
+          <div class="set-part-sturmanker-acc">
+            <div class="side-img-sturmanker-container-acc">
+              <div class="side-img-sturmanker-acc" style="background-image:
+                          url('img/sturmanker1.svg');"></div>
+            </div>
+            <div class="part-set-part-title">Sturmanker</div>
+            <div class="delete-img-accesories-container" style="flex: 10%">
+              <div class="delete-img-accesories"></div>
+            </div>
+          </div>
+        </div>
+        <!-- MAIN FENCE PART ACCESOAR -->
+        <div id="add-fence-acc" style="display: none;">
+          <!-- <div class=" set-part-container" style="height: 50px; cursor: default;"> -->
+          <!-- first part -->
+          <!-- <div class="set-part-set-fence-size" id="open-fence-slider">
+              <div class="side-img-set-fence-size-container-acc">
+                <div class="side-img-set-fence-size-acc" style="background-image: url('img/saw.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Kürzen</div>
+              <div class="title-is-active">+</div>
+            </div>
+          </div> -->
+          <!-- fence size slider -->
+          <!-- <div class="set-part-container" id="fence-slider" style="display: none; height: auto;">
+            <div style="height: 40px; width: 90%; margin-left: 5%; display: flex; align-items: center;">
+              Profillänge
+            </div> -->
+          <!-- slider section -->
+          <!-- <div class="fence-slider-section"> -->
+          <!-- slider -->
+          <!-- <div class="slider-container" style="width: 90%; height: 80px; margin: 40px 5% 0 5%;">
+                <div id="slider-pips" style="top: 0px; right: 1px; margin: 10px 25px;"></div>
+              </div> -->
+          <!-- slider control -->
+          <!-- <div class="slider-control"
+                style="width: 90%; height: 80px; margin: 0 5%; display: flex; align-items: center; text-align: center;">
+                <div style="flex: 40%; ">
+                  <div class="slider-btns" id="slider-min">-</div>
+                </div>
+                <div style="flex: 20%;">
+                  <div class="slider-btns" id="confirm-slider-size">
+                    &#10004</div>
+                </div>
+                <div style=" flex: 40%;">
+                  <div class="slider-btns" id="slider-plus">+</div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="set-part-container" style="height: 50px; cursor: default; border-style: none">
+            <!-- first part -->
+            <div id="set-part-fence-acc-del">
+              <div class="side-img-fence-acc-del-container">
+                <div class="side-img-fence-acc-del" style="background-image:
+                    url('img/deleteRoundNo.png');"></div>
+              </div>
+              <div style="flex: 80%;">Der erste Zaun</div>
+            </div>
+          </div>
+
+          <!-- change fence -->
+          <div class="set-part-container" style="height: auto; margin-bottom: 20px; border-style: none;">
+
+            <!-- change to rhombus 220 80 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence active-text-color" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 220 100 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 220 120 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 220 150 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 250 80 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 250 100 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 250 120 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 250 150 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+            <!-- GATE -->
+            <!-- change to rhombus 100 80 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 100 100 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 100 120 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 100 150 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- BIG GATE -->
+            <!-- change to rhombus 300 80 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 300 100 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 300 120 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+            <!-- change to rhombus 300 150 -->
+            <div class="set-part-design-inlays-1 set-activnes-change-fence" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+
+
+          </div>
+
+          <!-- SINGLE FENCE EDITIONG -->
+          <!-- //////////////////////////////////////////////// -->
+
+          <!-- MAIN FARBE SINGLE 1 -->
+          <div class="set-part-click-title-single not-clicked">
+            <!-- <div class="set-num"></div> -->
+            <div class="title-set-part-title">Optik</div>
+            <div class="title-is-active">+</div>
+          </div>
+          <!-- PARTS CONTAINER -->
+          <div class="set-part-container">
+            <!-- first part -->
+            <div class="set-part-main-farbe-single active-text-color-single">
+              <div class="color-badge-set-part">
+                <div class="color-badge" style="background-image: url('img/larche.jpg');"></div>
+              </div>
+              <div class="part-set-part-title">Larche</div>
+              <div class="part-is-active">&#10003</div>
+            </div>
+            <!-- second part -->
+            <!-- <div class="set-part-main-farbe-single">
+              <div class="color-badge-set-part">
+                <div class="color-badge" style="background-image: url('img/grau.jpg');"></div>
+              </div>
+              <div class="part-set-part-title">KDI Grau</div>
+              <div class="part-is-active"></div>
+            </div> -->
+          </div>
+          <!-- ////////////////////////// -->
+          <!-- KAPIJA PARTS FARBE SINGLE 1 -->
+          <div id="changeKapijaPartsColor" class="set-part-click-title-single not-clicked">
+            <!-- <div class="set-num"></div> -->
+            <div class="title-set-part-title">Beschlagset Einzeltor DURAVIS® mit Duplexbeschichtung für Lärche Farbton
+            </div>
+            <div class="title-is-active">+</div>
+          </div>
+          <!-- PARTS CONTAINER -->
+          <div id="changeKapijaPartsColorCont" class="set-part-container">
+            <!-- first part -->
+            <div class="set-part-kapijaParts-farbe-single active-text-color-single">
+              <div class="color-badge-set-part">
+                <div class="color-badge" style="background-image: url('img/schwarzdiamant.jpg');"></div>
+              </div>
+              <div class="part-set-part-title">Schwarzdiamant</div>
+              <div class="part-is-active">&#10003</div>
+            </div>
+            <!-- second part -->
+            <div class="set-part-kapijaParts-farbe-single">
+              <div class="color-badge-set-part">
+                <div class="color-badge" style="background-image: url('img/rostbraun.jpg');"></div>
+              </div>
+              <div class="part-set-part-title">Rostbraun</div>
+              <div class="part-is-active"></div>
+            </div>
+            <!-- third part -->
+            <div class="set-part-kapijaParts-farbe-single">
+              <div class="color-badge-set-part">
+                <div class="color-badge" style="background-image: url('img/perlbeige.jpg');"></div>
+              </div>
+              <div class="part-set-part-title">Perlbeige</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- ////////////////////////// -->
+
+          <!-- button to change all fences -->
+          <div id="changeAllFences" class="not-clicked" style="width: 50%; margin: 30px 25% 25% 100px;">
+            <div class="title-set-part-title">Für alle übernehmen</div>
+          </div>
+
+          <!-- ///////////////////////////////////////////////////////////// -->
+        </div>
+
+
+
+        <!-- SIDE WHEN ADD NEW FENCE ARROW IS CLICKED -->
+        <!-- add new fence -->
+        <div id="addNewFenceToSide" style="height: auto; display: none; margin-bottom: 100px;">
+          <!-- change to rhombus 220 80 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-22080" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 220 100 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-220100" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 220 120 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-220120" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 220 150 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-220150" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>220x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 250 80 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-25080" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 250 100 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-250100" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 250 120 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-250120" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 250 150 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-250150" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/zaunHochwald.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Zaun Hochwald Lärche<br>250x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- GATE -->
+          <!-- change to rhombus 100 80 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-10080" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 100 100 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-100100" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 100 120 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-100120" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 100 150 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-100150" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays"
+                  style="background-image: url('icons/einzeltorHochwaldLarche2.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Einzeltor Hochwald Lärche<br>100x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- BIG GATE -->
+          <!-- change to rhombus 300 80 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-30080" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x80cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 300 100 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-300100" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x100cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 300 120 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-300120" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x120cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+          <!-- change to rhombus 300 150 -->
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <div class="set-part-design-inlays-1" id="new-fence-300150" style="margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('icons/doppeltorHochwaldLarche.svg');">
+                </div>
+              </div>
+              <div class="part-set-part-title">Doppeltor Hochwald Lärche<br>300x150cm</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+
+
+          <!-- ADD STURMANKER -->
+          <!-- <div class="set-part-container" style="height: auto; font-size: 15px; border-style: none;">
+            <div class="set-part-design-inlays-1" id="add-sturmanker" style="display: none; margin: 10px 5%;">
+              <div class="side-img-design-inlays-container">
+                <div class="side-img-design-inlays" style="background-image: url('img/sturmanker1.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Sturmanker</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div> -->
+        </div>
+        <!-- EDIT POST -->
+        <div id="editPost" style="height: auto;display: none; margin-bottom: 100px;">
+          <div class="set-part-container" style="height: auto; border-style: none;">
+            <!-- first part -->
+            <div class="set-part-befe-pfosten-single active-text-color-single-pfosten">
+              <div class="side-img-befe-pfosten-container">
+                <div class="side-img-befe-pfosten" style="background-image:
+                  url('img/pfostentraeeger.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Pfosten L=190cm<br>für
+                Pfostenträger</div>
+              <div class="part-is-active">&#10003</div>
+            </div>
+            <!-- second part -->
+            <div class="set-part-befe-pfosten-single">
+              <div class="side-img-befe-pfosten-container">
+                <div class="side-img-befe-pfosten" style="background-image:
+                  url('img/alu-pfosten-2.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Pfosten L=235cm<br>zum
+                Einbetonieren</div>
+              <div class="part-is-active"></div>
+            </div>
+            <!-- third part -->
+            <div class="set-part-befe-pfosten-single">
+              <div class="side-img-befe-pfosten-container">
+                <div class="side-img-befe-pfosten" style="background-image:
+                  url('img/alu-pfosten-2.svg');"></div>
+              </div>
+              <div class="part-set-part-title" style="font-size: 15px;">Pfosten
+                L=295cm<br>zum Einbetonieren bei besonders
+                starkem Gefälle</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- end of accesories -->
+      </div>
+      <!-- SETTINGS -->
+      <div class="settings">
+
+        <!-- settings title -->
+        <!-- <div id="setTitleSec" class="settings-title">
+          <div class="gearSettings" style="flex: 10%;"><i class="fa fa-gear" style="font-size:35px;"></i>
+          </div>
+          <div class="setTitle" style="flex: 80%;">Anpassen</div>
+          <div class=" settings-close-btn-container">
+
+            <div class="settings-close-btn">&#10005</div>
+          </div>
+        </div> -->
+
+        <!-- 1 -->
+        <!-- MAIN FARBE  -->
+        <div class="set-part-click-title not-clicked">
+          <div class="set-num"></div>
+          <div class="title-set-part-title">Optik</div>
+          <div class="title-is-active">+</div>
+        </div>
+        <!-- PARTS CONTAINER -->
+        <div class="set-part-container">
+          <!-- first part -->
+          <div class="set-part-main-farbe active-text-color">
+            <div class="color-badge-set-part">
+              <div class="color-badge" style="background-image: url('img/larche.jpg');"></div>
+            </div>
+            <div class="part-set-part-title">Larche</div>
+            <div class="part-is-active">&#10003</div>
+          </div>
+          <!-- second part -->
+          <!-- <div class="set-part-main-farbe">
+            <div class="color-badge-set-part">
+              <div class="color-badge" style="background-image: url('img/grau.jpg');"></div>
+            </div>
+            <div class="part-set-part-title">KDI Grau</div>
+            <div class="part-is-active"></div>
+          </div> -->
+        </div>
+
+        <!-- 2 -->
+        <!-- PFOSTEN  -->
+        <div class="set-part-click-title not-clicked" style="display: none;">
+          <div class="set-num"></div>
+          <div class="title-set-part-title">Pfosten</div>
+          <div class="title-is-active">+</div>
+        </div>
+        <!-- PARTS CONTAINER -->
+        <div class="set-part-container" style="display: none;">
+          <!-- set post height -->
+          <!-- <div class="part-set-part-title" style="margin: 8px 15px;">Zaunhöhe</div>
+          <div class="set-post-height"
+            style="width: 90%; height: 40px; margin-left: 5%; display: flex; align-items: center; text-align: center; border-radius: 5px; border: 1px solid #aabeff">
+            <div id="h76" style="flex: 50%; display: flex; cursor: pointer;">
+              <div style="flex: 80%;">H = 176cm</div>
+              <div style="flex: 20%;">&#10003</div>
+            </div>
+            <div id="h85" style="flex: 50%; display: flex; cursor: pointer;">
+              <div style="flex: 80%;">H = 185cm</div>
+              <div style="flex: 20%;"></div>
+            </div>
+          </div> -->
+          <!-- set post type -->
+          <div class="part-set-part-title" style="margin: 8px 15px;">Pfostenmaterial</div>
+          <div class="set-post-type"
+            style="width: 90%; height: 150px; margin-left: 5%; margin-bottom: 10px;  display: flex; align-items: center; text-align: center; border-radius: 5px; border: 1px solid #faa41a52">
+
+            <div id="holzType" style="flex: 50%; display: flex; cursor: pointer;">
+              <div style="flex: 80%;">
+                <div
+                  style="background-image: url('img/pfosten-9x9.svg'); width: 100px; height: 100px; background-size: cover; background-position: center; margin: auto;">
+                </div>
+                <div>Holz-Pfosten<br>9x9 cm</div>
+              </div>
+              <div style="flex: 20%;">&#10003</div>
+            </div>
+
+            <div id="aluType" style="flex: 50%; display: flex; cursor: pointer;">
+              <div style="flex: 80%;">
+                <div
+                  style="background-image: url('img/pfosten-7x7.svg'); width: 100px; height: 100px;   background-size: cover; background-position: center; margin: auto;">
+                </div>
+                <div>Alu-Pfosten <br>7x7 cm</div>
+              </div>
+              <div style="flex: 20%;"></div>
+            </div>
+
+          </div>
+
+          <!-- //// -->
+          <div id="pfostenSecPart" style="display: none; margin-bottom: 10px;">
+            <!-- first part -->
+            <div class="part-set- -title" style="margin: 8px 15px;">Pfostenfarbe</div>
+            <div class="set-part-farbe-pfosten">
+              <div class="color-badge-set-part">
+                <div class="color-badge"></div>
+              </div>
+              <div class="part-set-part-title">silber</div>
+              <div class="part-is-active"></div>
+            </div>
+            <!-- second part -->
+            <div class="set-part-farbe-pfosten active-text-color">
+              <div class="color-badge-set-part">
+                <div class="color-badge"></div>
+              </div>
+              <div class="part-set-part-title">anthrazit</div>
+              <div class="part-is-active">&#10003</div>
+            </div>
+            <!-- /////////////////// -->
+            <div class="part-set- -title" style="margin: 8px 15px;">Befestigungsmethode Pfosten</div>
+            <!-- first part -->
+            <div class="set-part-befe-pfosten active-text-color">
+              <div class="side-img-befe-pfosten-container">
+                <div class="side-img-befe-pfosten" style="background-image:
+                  url('img/pfostentraeeger.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Pfosten L=190cm<br>für
+                Pfostenträger</div>
+              <div class="part-is-active">&#10003</div>
+            </div>
+            <!-- second part -->
+            <div class="set-part-befe-pfosten">
+              <div class="side-img-befe-pfosten-container">
+                <div class="side-img-befe-pfosten" style="background-image:
+                  url('img/alu-pfosten-2.svg');"></div>
+              </div>
+              <div class="part-set-part-title">Pfosten L=235cm<br>zum
+                Einbetonieren</div>
+              <div class="part-is-active"></div>
+            </div>
+            <!-- third part -->
+            <div class="set-part-befe-pfosten">
+              <div class="side-img-befe-pfosten-container">
+                <div class="side-img-befe-pfosten" style="background-image:
+                  url('img/alu-pfosten-2.svg');"></div>
+              </div>
+              <div class="part-set-part-title" style="font-size: 15px;">Pfosten
+                L=295cm<br>zum Einbetonieren bei besonders
+                starkem Gefälle</div>
+              <div class="part-is-active"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <!-- DRZAC SA STRANE STURMANKER -->
+        <div class="set-part-click-title not-clicked" style="display: none;">
+          <div class="set-num"></div>
+          <div class="title-set-part-title">Sturmanker (optional)</div>
+          <div class="title-is-active">+</div>
+        </div>
+        <!-- PARTS CONTAINER -->
+        <div class="set-part-container" style="margin-bottom: 100px;display: none;">
+          <!-- first part -->
+          <div class="set-part-sturmanker" style="margin: 15px 5%;">
+            <div class="side-img-sturmanker-container">
+              <div class="side-img-sturmanker" style="background-image:
+                  url('img/sturmanker1.svg');"></div>
+            </div>
+            <div class="part-set-part-title" style="font-size: 15px;">Sturmanker<br>
+              Kann nicht zusammen mit LED montiert werden</div>
+            <div class="part-is-active"></div>
+          </div>
+          <!-- second part -->
+          <div class="set-part-sturmanker">
+            <div class="sturmanker-container">
+              <div class="sturmanker-con" style="border-right: 1px solid
+                  gray;">
+                <div></div>
+                <div class="part-set-part-title" style="font-size: 15px;">Rückseite</div>
+                <div class="part-is-active"></div>
+              </div>
+              <div class="sturmanker-con active-text-color" style="border-right: 1px solid gray; flex: 24%;">
+                <div></div>
+                <div class="part-set-part-title" style="font-size: 15px;">Ohne</div>
+                <div class="part-is-active">&#10003</div>
+              </div>
+              <div class="sturmanker-con">
+                <div></div>
+                <div class="part-set-part-title" style="font-size: 15px;">Vorderseite</div>
+                <div class="part-is-active"></div>
+              </div>
+            </div>
+          </div>
+          <div class="part-set- -title" style="margin: 8px 15px;">Farbe</div>
+          <div class="set-part-farbe-sturmanker">
+            <div class="color-badge-set-part">
+              <div class="color-badge"></div>
+            </div>
+            <div class="part-set-part-title">silber</div>
+            <div class="part-is-active"></div>
+          </div>
+          <!-- second part -->
+          <div class="set-part-farbe-sturmanker active-text-color">
+            <div class="color-badge-set-part">
+              <div class="color-badge"></div>
+            </div>
+            <div class="part-set-part-title">anthrazit</div>
+            <div class="part-is-active">&#10003</div>
+          </div>
+        </div>
+
+      </div><!-- end setings div-->
+      <!-- END OF SETTINGS -->
+
+    </div><!-- end configurator section div-->
+
+
+
+    <!-- CART -->
+    <div id="cart-fade"></div>
+    <div id="cart-main-section">
+      <!-- cart title -->
+      <div class="cart-title">
+        <div style="flex: 10%;"><i class="fa fa-calculator" style="font-size: 35px;"></i>
+        </div>
+        <div class="setTitle" style="flex: 80%;">Preis/Warenkorb</div>
+        <div class="cart-close-btn-container">
+          <div id="cart-close-btn">&#10005</div>
+        </div>
+      </div>
+      <!-- cart section -->
+      <div id="cart-section">
+        <section class="add-pad-small" style="margin-bottom: 100px; overflow-y: auto;">
+
+          <div class="grid-container">
+            <form method="post">
+              <div id="SmartCart" class="scMain" style="visibility: visible;">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-220x80" pcategory="ZAUN HOCHWALD" pprice="0"
+                  fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 230" pabm="220x80cm" lic="0">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-220x100" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 231" pabm="220x100cm" lic="0">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-220x120" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 232" pabm="220x120cm" lic="0">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-220x150" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 233" pabm="220x150cm" lic="0">
+
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-250x80" pcategory="ZAUN HOCHWALD" pprice="0"
+                  fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 195" pabm="250x80cm" lic="0">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-250x100" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 196" pabm="250x100cm" lic="0">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-250x120" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 197" pabm="250x120cm" lic="0">
+
+                <input type="hidden" pimage="icons/zaunHochwald.svg" uid="z-250x150" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Zaun Hochwald Lärche" pid="0 / 0 / 198" pabm="250x150cm" lic="0">
+
+
+                <input type="hidden" pimage="icons/einzeltorHochwaldLarche2.svg" uid="z-100x80"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 165"
+                  pabm="100x80cm" lic="0">
+
+                <input type="hidden" pimage="icons/einzeltorHochwaldLarche2.svg" uid="z-100x100"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 166"
+                  pabm="100x100cm" lic="0">
+
+                <input type="hidden" pimage="icons/einzeltorHochwaldLarche2.svg" uid="z-100x120"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 167"
+                  pabm="100x120cm" lic="0">
+
+                <input type="hidden" pimage="icons/einzeltorHochwaldLarche2.svg" uid="z-100x150"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 168"
+                  pabm="100x150cm" lic="0">
+
+                <input type="hidden" pimage="icons/doppeltorHochwaldLarche.svg" uid="z-300x80" pcategory="ZAUN HOCHWALD"
+                  pprice="0" fprice="0" pname="Doppeltor Hochwald Lärche" pid="0 / 0 / 191" pabm="300x80cm" lic="0">
+
+                <input type="hidden" pimage="icons/doppeltorHochwaldLarche.svg" uid="z-300x100"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 192"
+                  pabm="300x100cm" lic="0">
+
+                <input type="hidden" pimage="icons/doppeltorHochwaldLarche.svg" uid="z-300x120"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 193"
+                  pabm="300x120cm" lic="0">
+
+                <input type="hidden" pimage="icons/doppeltorHochwaldLarche.svg" uid="z-300x150"
+                  pcategory="ZAUN HOCHWALD" pprice="0" fprice="0" pname="Einzeltor Hochwald Lärche" pid="0 / 0 / 194"
+                  pabm="300x150cm" lic="0">
+
+
+                <input type="hidden" pimage="icons/pfosten-9x9.svg" uid="z-9x9x80" pcategory="KANTHOLZ LARCHE"
+                  pprice="0" fprice="0" pname="Kantholz Lärche" pid="0 / 0 / 831" pabm="9x9x80cm" lic="0">
+
+                <input type="hidden" pimage="icons/pfosten-9x9.svg" uid="z-9x9x100" pcategory="KANTHOLZ LARCHE"
+                  pprice="0" fprice="0" pname="Kantholz Lärche" pid="0 / 0 / 776" pabm="9x9x100cm" lic="0">
+
+                <input type="hidden" pimage="icons/pfosten-9x9.svg" uid="z-9x9x120" pcategory="KANTHOLZ LARCHE"
+                  pprice="0" fprice="0" pname="Kantholz Lärche" pid="0 / 0 / 782" pabm="9x9x120cm" lic="0">
+
+                <input type="hidden" pimage="icons/pfosten-9x9.svg" uid="z-9x9x150" pcategory="KANTHOLZ LARCHE"
+                  pprice="0" fprice="0" pname="Kantholz Lärche" pid="0 / 0 / 777" pabm="9x9x150cm" lic="0">
+
+                <input type="hidden" pimage="icons/H-Pfostenträger.png" uid="20 x 90 x 1800mm"
+                  pcategory="Befestigungsmaterial" pprice="0" fprice="0" pname="H Pfostenträger 91 mm" pid="0 / 0 / 381"
+                  pabm="20x90x1800mm" lic="0">
+
+                <input type="hidden" pimage="icons/Pfostenschraube.jpg" uid="10,0x50mm" pcategory="Befestigungsmaterial"
+                  pprice="0" fprice="0" pname="Pfostenschraube TX 40" pid="0 / 0 / 411" pabm="10,0x50mm" lic="0">
+
+                <input type="hidden" pimage="icons/pfostenkappe.svg" uid="91 x 91 mm" pcategory="Pfostenkappe"
+                  pprice="0" fprice="0" pname="DKK 90 edelstahl Pfostenkappe Pyramide" pid="0 / 0 / 388"
+                  pabm="91 x 91 mm" lic="0">
+
+                <!-- ///////////////////////////////////////////////////////////////////// -->
+
+
+              </div>
+            </form>
+
+          </div>
+          <!-- cart button -->
+          <a id="link" href="https://mega-holz.de/warenkorb/" style="float: right; margin-right: 20px;">
+            <button class="button">Weiter
+            </button>
+          </a>
+        </section>
+      </div>
+    </div>
+    <!-- END OF CART -->
+
+    <!-- CANVAS -->
+    <canvas id="renderCanvas">
+
+    </canvas>
+    <!-- LOADING -->
+    <div id="customLoadingScreenDiv"
+      style="width: 100vw; height: 100vh; background-color: rgb(255, 255, 255); position: absolute; z-index: 100;">
+      <img class="loading-img" src="img/logo.svg">
+      <div id="lottieWraper" style="width: 50px; height: 50px; position: absolute;
+      bottom: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);"></div>
+    </div>
+    <!-- CANVAS FOR 2D PLAN -->
+    <canvas id="canvas-plan" style="background-color: white; position: absolute; top: 50px; display: none;"></canvas>
+  </div>
+
+  <!-- SCRIPTS -->
+  <!-- smart cart -->
+  <!-- <script type="text/javascript" src="scripts/smartCartEdited.js"></script> -->
+  <!-- foundation.js -->
+  <script src="scripts/dependencies/foundation.min.js"></script>
+  <!-- main script file -->
+  <script src="index.js"></script>
+
+  <script src="scripts/lightsBabylon.js"></script>
+  <script src="scripts/addSkyBox.js"></script>
+
+  <script src="scripts/createMainPost.js"></script>
+  <script src="scripts/createNewFence.js"></script>
+  <script src="scripts/cameraTargetMesh.js"></script>
+  <script src="scripts/foundationVisibleFunction.js"></script>
+  <script src="scripts/intesectionFunction.js"></script>
+  <script src="scripts/intersectArrowSignsFence.js"></script>
+  <script src="scripts/postIntersaction.js"></script>
+  <script src="scripts/addDefaultMaterial.js"></script>
+  <script src="scripts/setSmallerFenceSize.js"></script>
+  <script src="scripts/removeSideAccesories.js"></script>
+  <script src="scripts/onHover.js"></script>
+  <script src="scripts/loadCart.js"></script>
+  <script src="scripts/populateCartPrices.js"></script>
+  <script src="scripts/draw2dPlan.js"></script>
+  <script src="scripts/endOfBabylon.js"></script>
+
+</body>
+
+</html>
